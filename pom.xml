@@ -16,6 +16,8 @@
         <quarkus.platform.version>3.21.0</quarkus.platform.version>
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.5.2</surefire-plugin.version>
+        <quarkus.native.container-build>true</quarkus.native.container-build>
+        <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-native-image:21.0.0-java11</quarkus.native.builder-image>
     </properties>
 
     <dependencyManagement>
@@ -31,6 +33,13 @@
                 <groupId>${quarkus.platform.group-id}</groupId>
                 <artifactId>quarkus-amazon-services-bom</artifactId>
                 <version>${quarkus.platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>2.31.13</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -54,6 +63,24 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-junit5</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/textract -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>textract</artifactId>
+            <version>2.31.12</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3 -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3</artifactId>
+            <version>2.31.12</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/software.amazon.awssdk/s3-event-notifications -->
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>s3-event-notifications</artifactId>
         </dependency>
     </dependencies>
 
