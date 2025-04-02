@@ -13,11 +13,21 @@ export class AwsTextractStack extends cdk.Stack {
         // Criar bucket para PDFs
         const inputBucket = new s3.Bucket(this, 'InputPDFBucket', {
             removalPolicy: cdk.RemovalPolicy.RETAIN,
+            lifecycleRules: [
+                {
+                    expiration: cdk.Duration.days(5), // Apaga ficheiros após 30 dias
+                },
+            ],
         });
 
         // Criar bucket para JSONs processados
         const outputBucket = new s3.Bucket(this, 'OutputJSONBucket', {
             removalPolicy: cdk.RemovalPolicy.RETAIN,
+            lifecycleRules: [
+                {
+                    expiration: cdk.Duration.days(5), // Apaga ficheiros após 30 dias
+                },
+            ],
         });
 
         // Criar SNS Topic
